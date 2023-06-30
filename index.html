@@ -8,10 +8,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Nixie+One&display=swap" rel="stylesheet">
-    <script defer src="js/main.js"></script>
+    <script defer src="./js/main.js"></script>
 </head>
 <body>
-    <div id="header">
+    <section id="header">
         <div class="red"></div>
         <div class="blue"></div>
         <div class="yellow"></div>
@@ -22,19 +22,28 @@
         <div class="yellow"></div>
         <div class="blue"></div>
         <div class="red"></div>
+    </section>
+    <button id="start">Start</button>
+    <div class="score">Your current score:
+        <div id="cur-score"></div>
     </div>
-    <div class="score">Your current score:</div>
-        <div class="score-num"></div>
-    <div id="color-buttons">
-        <div id="red"></div>
-        <div id="blue"></div>
-        <div id="yellow"></div>
-        <div id="green"></div>
+    <section id="color-buttons">
+        <div id="red">
+            <audio src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" sound="red"></audio>
+        </div>
+        <div id="blue">
+            <audio src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" sound="blue"></audio>
+        </div>
+        <div id="yellow">
+            <audio src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" sound="yellow"></audio>
+        </div>
+        <div id="green">
+            <audio src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" sound="green"></audio>
+        </div>
+    </section>
+    <div class="score">High score:
+        <div id="high-score"></div>
     </div>
-    <div class="score">High score:</div>
-        <div class="score-num"></div>
-    <div class="replay">Play again?
-        <button class="replay">&#x1F504</button>
-    </div>
+    <button id="replay">Play again? &#x1F504</button>
 </body>
 </html>

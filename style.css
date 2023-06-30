@@ -56,7 +56,7 @@ h2 {
     display: inline-block;
 }
 
-.score, .replay {
+.score, #replay, #start {
     font-family: 'Nixie One', cursive;
     font-size: 20px;
 }
@@ -110,11 +110,13 @@ button {
     padding: 0.9vmin;
     font-size: 4vmin;
     border-radius: 0.75vmin;
-    border: 0.1vmin solid black;
-    background-color: rgb(111, 142, 171);
+    border: 0.1vmin solid red;
+    background-color: white;
+    color: red;
   }
 
 button:hover {
-    background-color: white;
+    background-color: red;
     border: solid white;
+    color: white;
 }
