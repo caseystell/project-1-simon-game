@@ -5,19 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play Simon!</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Nixie+One&display=swap" rel="stylesheet">
     <script defer src="js/main.js"></script>
 </head>
 <body>
-    <header>SIMON</header>
-    <h2>a game of memory</h2>
-    <div class="score">Your Current Score</div>
+    <div id="header">
+        <div class="red"></div>
+        <div class="blue"></div>
+        <div class="yellow"></div>
+        <div class="green"></div>
+        <header>SIMON</header>
+        <h2>a memory game</h2>
+        <div class="green"></div>
+        <div class="yellow"></div>
+        <div class="blue"></div>
+        <div class="red"></div>
+    </div>
+    <div class="score">Your current score:</div>
+        <div class="score-num"></div>
     <div id="color-buttons">
         <div id="red"></div>
         <div id="blue"></div>
         <div id="yellow"></div>
         <div id="green"></div>
     </div>
-    <div class="score">High Score</div>
-    <button id="replay">PLAY AGAIN</button>
+    <div class="score">High score:</div>
+        <div class="score-num"></div>
+    <div class="replay">Play again?
+        <button class="replay">&#x1F504</button>
+    </div>
 </body>
 </html>
