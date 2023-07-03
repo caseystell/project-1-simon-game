@@ -89,19 +89,19 @@ h2 {
     width: 20vmin;
 }
 
-#red:hover {
+#red:hover, #red .activated{
     background-color: red;
 }
 
-#blue:hover {
+#blue:hover, #blue .activated{
     background-color: blue;
 }
 
-#yellow:hover {
+#yellow:hover, #yellow .activated{
     background-color: yellow;
 }
 
-#green:hover {
+#green:hover, #green .activated{
     background-color: green;
 }
 
@@ -120,4 +120,3 @@ button:hover {
     border: solid white;
     color: white;
 }
-

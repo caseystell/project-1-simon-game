@@ -9,19 +9,16 @@ let turnCount = 0;
 let computerSequence = [];
 let playerSequence = [];
 
-
 /*----- cached elements  -----*/
 const curScoreEl = document.getElementById("cur-score");
 const highScoreEl = document.getElementById("high-score");
 const startBtn = document.getElementById("start");
-
+const colorEls = document.querySelectorAll("#color-buttons > div");
 
 /*----- event listeners -----*/
 startBtn.addEventListener("click", init);
 
-
 /*----- functions -----*/
-
 function init() {
     noMistakes = true;
     currentScore = 0;
@@ -33,13 +30,9 @@ function init() {
 };
 
 function render() {
-    renderBoard();
     renderMessage();
     renderControls();
-};
-
-function renderBoard() {
-    playTurn();
+    computerTurn();
 };
 
 function renderMessage() {
@@ -52,10 +45,7 @@ function renderMessage() {
 function renderControls() {
     const playAgainBtn = document.getElementById("replay");
     playAgainBtn.style.visibility = noMistakes ? "hidden" : "visible";
-};
-
-function playTurn() {
-   playNextTurn();
+    startBtn.style.visibility = noMistakes ? "hidden" : "visible";
 };
 
 function getRandomColor() {
@@ -63,29 +53,62 @@ function getRandomColor() {
     return randomColor;
 };
 
+function flashColor(color) {
+    const colorEl = document.querySelector(`[id='${color}']`);
+    const originalColor = colorEl.style.backgroundColor;
+    colorEl.style.backgroundColor = color;
+    setTimeout(function() {
+        colorEl.style.backgroundColor = originalColor;
+    }, 600);
+    colorEl.addEventListener("click", computerTurn);
+};
+
 function makeSound(color) {
     const colorEl = document.querySelector(`[id='${color}']`);
     const colorSounds = document.querySelector(`[sound='${color}']`);
     colorEl.classList.add("activated");
     colorSounds.play();
-    
     setTimeout(function() {
         colorEl.classList.remove("activated");
     }, 500);
 };
 
-function showColor(color) {
-    const colorEl = document.querySelector(`[id='${color}']`);
+// function computerTurn() {
+//     getRandomColor();
+//     const nextTurnSequence = [...computerSequence];
+//     nextTurnSequence.push(getRandomColor());
+//     flashColor(nextTurnSequence);
+//     makeSound(nextTurnSequence);
+//     turnCount += 1;
+//     console.log(nextTurnSequence);
+// };
+
+function computerTurn() {
+    const nextColor = getRandomColor();
+    const nextTurnSequence = [...computerSequence, nextColor];
+    computerSequence = nextTurnSequence;
+
+    flashColor(nextColor);
+    makeSound(nextColor);
     
+    turnCount += 1;
+    console.log(nextTurnSequence);
+  }
+
+function playerTurn() {
+
 };
 
-function playNextTurn() {
-    getRandomColor();
-    const nextTurnSequence = [...computerSequence];
-    nextTurnSequence.push(getRandomColor());
-    makeSound(nextTurnSequence);
-    turnCount += 1;
-}
+function compareSequences(computerSequence, playerSequence) {
+    if (playerSequence === computerSequence) {
+        currentScore += 1;
+        curScoreEl.innerText = `${currentScore}`
+    } else {
+        noMistakes = false;
+        currentScore = highScore;
+        highScoreEl.innerText = `${highScore}`
+    }
+};
 
 /* Pseudocode:
 
