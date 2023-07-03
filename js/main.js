@@ -30,7 +30,8 @@ function init() {
     playerSequence = [];
     startBtn.style.visibility = "hidden";
     render();
-    playGame();
+    computerTurn();
+    // playGame();
 };
 
 function render() {
@@ -90,6 +91,11 @@ function playerTurn(evt) {
     playerSequence.push(clickedColor);
     makeSound(clickedColor);
     console.log(`Player sequence: ${playerSequence}`);
+    if (!compareSequences(computerSequence, playerSequence)) {
+        return;
+    }
+    computerTurn();
+    return;
 };
 
 function compareSequences(compSeq, playerSeq) {
@@ -98,11 +104,11 @@ function compareSequences(compSeq, playerSeq) {
         for (let i = 0; i < sequenceLength; i++) {
             if (compSeq[i] !== playerSeq[i]) {
                 noMistakes = false;
-                currentScore = highScore;
+                highScore = currentScore;
                 highScoreEl.innerText = highScore
                 return false;
             }
-        } 
+        }
         currentScore += 1;
         curScoreEl.innerText = currentScore;
         return true;
@@ -110,15 +116,24 @@ function compareSequences(compSeq, playerSeq) {
     return false;
 };
 
-function playGame() {
-    computerTurn();
-    while (noMistakes) {
-        if (!compareSequences(computerSequence, playerSequence)) {
-            break;
-        }
-        computerTurn();
-    } return;
-};
+function endGame() {
+
+}
+
+// function playGame() {
+    
+// };
+
+// function playGame() {
+//     computerTurn();
+//     while (noMistakes) {
+//         if (!compareSequences(computerSequence, playerSequence)) {
+//             break;
+//         }
+//         computerTurn();
+//     } return;
+// };
+
 
 /* Pseudocode:
 
