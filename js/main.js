@@ -30,7 +30,6 @@ function init() {
     playerSequence = [];
     startBtn.style.visibility = "hidden";
     render();
-    computerTurn();
     playGame();
 };
 
@@ -73,7 +72,7 @@ function makeSound(color) {
     colorSounds.play();
     setTimeout(function() {
         colorEl.classList.remove("activated");
-    }, 500);
+    }, 600);
 };
 
 function computerTurn() {
@@ -82,29 +81,27 @@ function computerTurn() {
     flashColor(nextColor);
     makeSound(nextColor);
     turnCount += 1;
-    console.log(computerSequence);
+    console.log(`Computer sequence: ${computerSequence}`);
 }
 
 function playerTurn(evt) {
     const colorIdx = colorEls.indexOf(evt.target);
     const clickedColor = colors[colorIdx];
     playerSequence.push(clickedColor);
-    console.log(playerSequence);
     makeSound(clickedColor);
-    compareSequences(computerSequence, playerSequence);
+    console.log(`Player sequence: ${playerSequence}`);
 };
 
 function compareSequences(computerSequence, playerSequence) {
-    for (let i = 0; i < playerSequence.length; i++) {
-        console.log(`The player sequence is ${playerSequence[i]}`);
-    } 
-    for (let i = 0; i < computerSequence.length; i++) {
-        console.log(`The computer sequence is ${computerSequence[i]}`);
-    }
-    if (playerSequence === computerSequence) {
-        currentScore += 1;
-        curScoreEl.innerText = currentScore
-        computerTurn();
+    if (playerSequence.length === computerSequence.length) {
+        let sequenceLength = computerSequence.length;
+        for (let i = 0; i < sequenceLength; i++) {
+            if (playerSequence[i] === computerSequence[i]) {
+                currentScore += 1;
+                curScoreEl.innerText = currentScore
+                computerTurn();
+            }
+        } 
     } else {
         noMistakes = false;
         currentScore = highScore;
