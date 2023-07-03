@@ -15,16 +15,6 @@ const highScoreEl = document.getElementById("high-score");
 const startBtn = document.getElementById("start");
 const colorEls = [...document.querySelectorAll("#color-buttons > div")];
 
-// function getColorEl() {
-//     colorEls.forEach(function(colorEl) {
-//         colorEl.addEventListener("click", compareSequences);
-//         const colorName = colorEl.id.replace("div#", "");
-//         console.log(colorName);
-//     });
-// }
-
-// getColorEl();
-
 /*----- event listeners -----*/
 startBtn.addEventListener("click", init);
 colorEls.forEach(function(colorEl) {
@@ -40,6 +30,7 @@ function init() {
     playerSequence = [];
     startBtn.style.visibility = "hidden";
     render();
+    computerTurn();
     playGame();
 };
 
@@ -104,6 +95,12 @@ function playerTurn(evt) {
 };
 
 function compareSequences(computerSequence, playerSequence) {
+    for (let i = 0; i < playerSequence.length; i++) {
+        console.log(`The player sequence is ${playerSequence[i]}`);
+    } 
+    for (let i = 0; i < computerSequence.length; i++) {
+        console.log(`The computer sequence is ${computerSequence[i]}`);
+    }
     if (playerSequence === computerSequence) {
         currentScore += 1;
         curScoreEl.innerText = currentScore
@@ -141,8 +138,5 @@ X create a play again game button functionality when the player loses
 
 
 To figure out:
-X import or lookup how to choose items "randomly" from an array
-X how to get sounds in js associated to divs/variables
 how to get computer to generate the same random sequence while no mistakes are made (asynchronous timing?)
-
 */
