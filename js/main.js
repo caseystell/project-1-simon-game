@@ -13,10 +13,23 @@ let playerSequence = [];
 const curScoreEl = document.getElementById("cur-score");
 const highScoreEl = document.getElementById("high-score");
 const startBtn = document.getElementById("start");
-const colorEls = document.querySelectorAll("#color-buttons > div");
+const colorEls = [...document.querySelectorAll("#color-buttons > div")];
+
+// function getColorEl() {
+//     colorEls.forEach(function(colorEl) {
+//         colorEl.addEventListener("click", compareSequences);
+//         const colorName = colorEl.id.replace("div#", "");
+//         console.log(colorName);
+//     });
+// }
+
+// getColorEl();
 
 /*----- event listeners -----*/
 startBtn.addEventListener("click", init);
+colorEls.forEach(function(colorEl) {
+    colorEl.addEventListener("click", playerTurn);
+});
 
 /*----- functions -----*/
 function init() {
@@ -27,12 +40,12 @@ function init() {
     playerSequence = [];
     startBtn.style.visibility = "hidden";
     render();
+    playGame();
 };
 
 function render() {
     renderMessage();
-    renderControls();
-    computerTurn();
+    renderButtons();
 };
 
 function renderMessage() {
@@ -42,7 +55,7 @@ function renderMessage() {
     } return;
 };
 
-function renderControls() {
+function renderButtons() {
     const playAgainBtn = document.getElementById("replay");
     playAgainBtn.style.visibility = noMistakes ? "hidden" : "visible";
     startBtn.style.visibility = noMistakes ? "hidden" : "visible";
@@ -60,7 +73,6 @@ function flashColor(color) {
     setTimeout(function() {
         colorEl.style.backgroundColor = originalColor;
     }, 600);
-    colorEl.addEventListener("click", computerTurn);
 };
 
 function makeSound(color) {
@@ -73,41 +85,41 @@ function makeSound(color) {
     }, 500);
 };
 
-// function computerTurn() {
-//     getRandomColor();
-//     const nextTurnSequence = [...computerSequence];
-//     nextTurnSequence.push(getRandomColor());
-//     flashColor(nextTurnSequence);
-//     makeSound(nextTurnSequence);
-//     turnCount += 1;
-//     console.log(nextTurnSequence);
-// };
-
 function computerTurn() {
     const nextColor = getRandomColor();
-    const nextTurnSequence = [...computerSequence, nextColor];
-    computerSequence = nextTurnSequence;
-
+    computerSequence.push(nextColor);
     flashColor(nextColor);
     makeSound(nextColor);
-    
     turnCount += 1;
-    console.log(nextTurnSequence);
-  }
+    console.log(computerSequence);
+}
 
-function playerTurn() {
-
+function playerTurn(evt) {
+    const colorIdx = colorEls.indexOf(evt.target);
+    const clickedColor = colors[colorIdx];
+    playerSequence.push(clickedColor);
+    console.log(playerSequence);
+    makeSound(clickedColor);
+    compareSequences(computerSequence, playerSequence);
 };
 
 function compareSequences(computerSequence, playerSequence) {
     if (playerSequence === computerSequence) {
         currentScore += 1;
-        curScoreEl.innerText = `${currentScore}`
+        curScoreEl.innerText = currentScore
+        computerTurn();
     } else {
         noMistakes = false;
         currentScore = highScore;
-        highScoreEl.innerText = `${highScore}`
+        highScoreEl.innerText = highScore
     }
+};
+
+function playGame() {
+    while (noMistakes) {
+        computerTurn();
+        compareSequences(computerSequence, playerSequence);
+    } return;
 };
 
 /* Pseudocode:
