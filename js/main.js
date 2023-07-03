@@ -92,27 +92,31 @@ function playerTurn(evt) {
     console.log(`Player sequence: ${playerSequence}`);
 };
 
-function compareSequences(computerSequence, playerSequence) {
-    if (playerSequence.length === computerSequence.length) {
-        let sequenceLength = computerSequence.length;
+function compareSequences(compSeq, playerSeq) {
+    if (compSeq.length === playerSeq.length) {
+        let sequenceLength = compSeq.length;
         for (let i = 0; i < sequenceLength; i++) {
-            if (playerSequence[i] === computerSequence[i]) {
-                currentScore += 1;
-                curScoreEl.innerText = currentScore
-                computerTurn();
+            if (compSeq[i] !== playerSeq[i]) {
+                noMistakes = false;
+                currentScore = highScore;
+                highScoreEl.innerText = highScore
+                return false;
             }
         } 
-    } else {
-        noMistakes = false;
-        currentScore = highScore;
-        highScoreEl.innerText = highScore
+        currentScore += 1;
+        curScoreEl.innerText = currentScore;
+        return true;
     }
+    return false;
 };
 
 function playGame() {
+    computerTurn();
     while (noMistakes) {
+        if (!compareSequences(computerSequence, playerSequence)) {
+            break;
+        }
         computerTurn();
-        compareSequences(computerSequence, playerSequence);
     } return;
 };
 
