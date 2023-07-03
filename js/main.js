@@ -20,17 +20,15 @@ const startBtn = document.getElementById("start");
 startBtn.addEventListener("click", init);
 
 
-
 /*----- functions -----*/
-init();
 
 function init() {
-    startBtn.classList.add("hidden");
     noMistakes = true;
     currentScore = 0;
     turnCount = 0;
     computerSequence = [];
     playerSequence = [];
+    startBtn.style.visibility = "hidden";
     render();
 };
 
@@ -41,7 +39,7 @@ function render() {
 };
 
 function renderBoard() {
-    // playTurn();
+    playTurn();
 };
 
 function renderMessage() {
@@ -57,8 +55,7 @@ function renderControls() {
 };
 
 function playTurn() {
-   
-   
+   playNextTurn();
 };
 
 function getRandomColor() {
@@ -75,6 +72,11 @@ function makeSound(color) {
     setTimeout(function() {
         colorEl.classList.remove("activated");
     }, 500);
+};
+
+function showColor(color) {
+    const colorEl = document.querySelector(`[id='${color}']`);
+    
 };
 
 function playNextTurn() {
