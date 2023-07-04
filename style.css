@@ -5,6 +5,10 @@
 body {
     height: 100vh;
     margin: 5vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     /* display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: 1fr 2fr 1.5fr 2fr;
@@ -17,8 +21,8 @@ body {
 
 header {
     font-family: 'Megrim', cursive;
-    font-size: 75px;
-    letter-spacing: 6vmin;
+    font-size: 72px;
+    letter-spacing: 5vmin;
     margin: 0;
 }
 

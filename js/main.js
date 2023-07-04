@@ -41,7 +41,7 @@ function render() {
 
 function renderMessage() {
     const messageEl = document.querySelector("h2");
-    if (noMistakes === false) {
+    if (!noMistakes) {
         messageEl.innerText = `Game over! You got ${currentScore} in a row!`
     } return;
 };
@@ -110,7 +110,7 @@ function compareSequences(compSeq, playerSeq) {
         let sequenceLength = compSeq.length;
         for (let i = 0; i < sequenceLength; i++) {
             if (compSeq[i] !== playerSeq[i]) {
-                noMistakes = false;
+                !noMistakes;
                 highScore = currentScore;
                 highScoreEl.innerText = highScore
                 return false;
@@ -119,8 +119,10 @@ function compareSequences(compSeq, playerSeq) {
         currentScore += 1;
         curScoreEl.innerText = currentScore;
         return true;
+    } else {
+        !noMistakes;
+        return false;
     }
-    return false;
 };
 
 function endGame() {
