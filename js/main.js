@@ -79,8 +79,12 @@ function makeSound(color) {
 function computerTurn() {
     const nextColor = getRandomColor();
     computerSequence.push(nextColor);
-    flashColor(nextColor);
-    makeSound(nextColor);
+    computerSequence.forEach(function(color, index) {
+        setTimeout(function() {
+            flashColor(color);
+            makeSound(color);
+        }, (index + 1) * 600);
+    });
     turnCount += 1;
     console.log(`Computer sequence: ${computerSequence}`);
 }
@@ -94,7 +98,10 @@ function playerTurn(evt) {
     if (!compareSequences(computerSequence, playerSequence)) {
         return;
     }
-    computerTurn();
+    setTimeout(function() {
+        computerTurn();
+    }, 600);
+    playerSequence = [];
     return;
 };
 
