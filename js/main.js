@@ -10,8 +10,8 @@ let computerSequence = [];
 let playerSequence = [];
 
 /*----- cached elements  -----*/
-const curScoreEl = document.getElementById("cur-score");
-const highScoreEl = document.getElementById("high-score");
+const curScoreEl = document.getElementsByClassName("cur-score");
+const highScoreEl = document.getElementsByClassName("high-score");
 const startBtn = document.getElementById("start");
 const colorEls = [...document.querySelectorAll("#color-buttons > div")];
 

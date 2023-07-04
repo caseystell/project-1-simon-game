@@ -5,18 +5,13 @@
 body {
     height: 100vh;
     margin: 5vmin;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    /* display: grid;
+    text-align: center; */
+    display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 1fr 2fr 1.5fr 2fr;
-    grid-template-areas: 
-        "clrs hdr clrs"
-        "cur-scr play hi-scr"
-        ". play ."
-        "ply-again play ."; */
+    grid-template-rows: 1fr 2fr 1.5fr 2fr
 }
 
 header {
@@ -24,6 +19,8 @@ header {
     font-size: 72px;
     letter-spacing: 5vmin;
     margin: 0;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
 }
 
 h2 {
@@ -31,6 +28,8 @@ h2 {
     font-size: 36px;
     letter-spacing: 0.5vmin;
     margin: 0;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
 }
 
 .red {
@@ -49,15 +48,17 @@ h2 {
     background-color: green;
 }
 
-.red, .blue, .yellow, .green {
+/* .red, .blue, .yellow, .green {
     display: grid;
     grid-template-columns: repeat(4, 4vmin);
-}
+} */
 
 #header > div {
     height: 30px;
     width: 30px;
     display: inline-block;
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
 }
 
 .score, #replay, #start {
@@ -81,14 +82,11 @@ h2 {
     background-color: #b7f7b7;
 }
 
-#color-buttons {
-    display: flex;
-    /* grid-template-columns: repeat(2, 10vmin);
-    grid-template-rows: repeat(2, 10vmin); */
-    gap: 1vmin;
-}
-
 #color-buttons > div {
+    display: inline-grid;
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 3;
+    gap: 2vmin;
     height: 20vmin;
     width: 20vmin;
 }
@@ -123,4 +121,24 @@ button:hover {
     background-color: red;
     border: solid white;
     color: white;
+}
+
+#replay {
+    grid-column: 1 / span 1;
+    grid-row: 4 / span 1;
+}
+
+#start {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.cur-score {
+    grid-column: 3 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.high-score {
+    grid-column: 3 / span 1;
+    grid-row: 4 / span 1;
 }
