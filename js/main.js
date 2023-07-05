@@ -92,7 +92,7 @@ function computerTurn() {
     clearTimeout(flashColor);
     turnCount += 1;
     console.log(`Computer sequence: ${computerSequence}`);
-}
+};
 
 function playerTurn(evt) {
     const colorIdx = colorEls.indexOf(evt.target);
@@ -100,22 +100,22 @@ function playerTurn(evt) {
     playerSequence.push(clickedColor) - 1;
     makeSound(clickedColor);
     console.log(`Player sequence: ${playerSequence}`);
-    if (!compareSequences(computerSequence, playerSequence)) {
+    if (!compareSequences(computerSequence.slice(0, playerSequence.length), playerSequence)) {
         noMistakes = false;
         return;
-    }
-    playerSequence = [];
-    setTimeout(function() {
-        computerTurn();
-    }, 600);
-    return;
+    };
+    if (playerSequence.length === computerSequence.length) {
+        playerSequence = [];
+        setTimeout(function() {
+            computerTurn();
+        }, 600);
+    };
 };
 
 function compareSequences(compSeq, playerSeq) {
     if (playerSeq.length !== compSeq.length) {
         return;
-    }
-    // if (compSeq.length === playerSeq.length) {
+    };
     let sequenceLength = compSeq.length;
     for (let i = 0; i < sequenceLength; i++) {
         if (compSeq[i] !== playerSeq[i]) {
@@ -127,10 +127,10 @@ function compareSequences(compSeq, playerSeq) {
                 highScoreEl.innerText = highScore;
             } else {
                 highScoreEl.innerText = prevHighScore;
-            }
+            };
             return false;
-        }
-    }
+        };
+    };
     currentScore += 1;
     curScoreEl.innerText = currentScore;
     return true;

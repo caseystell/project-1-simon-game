@@ -5,29 +5,24 @@
 body {
     height: 100vh;
     margin: 5vmin;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
-    justify-content: start;
     align-items: center;
     text-align: center;
 }
 
 header {
     font-family: 'Megrim', cursive;
-    font-size: 72px;
-    letter-spacing: 5vmin;
+    font-size: 13vmin;
+    letter-spacing: 2vmin;
     margin: 0;
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
 }
 
 h2 {
     font-family: 'Nixie One', cursive;
-    font-size: 36px;
+    font-size: 4.5vmin;
     letter-spacing: 0.5vmin;
-    margin: 0;
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
+    margin: 0px 0px 1vmin 0px;
 }
 
 .red {
@@ -47,17 +42,17 @@ h2 {
 }
 
 #header > div {
-    height: 30px;
-    width: 30px;
+    height: 4vmin;
+    width: 4vmin;
     display: inline-grid;
-    margin: 1px;
+    margin: 0.5vmin;
 }
 
 .score, #start {
     font-family: 'Nixie One', cursive;
-    font-size: 20px;
-    margin: 5px;
-    padding: 2px;
+    font-size: 3vmin;
+    margin: 1vmin;
+    padding: 0.5vmin;
 }
 
 #red {
@@ -77,12 +72,8 @@ h2 {
 }
 
 #color-buttons > div {
-    position: relative;
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 2vmin;
-    height: 40vmin;
-    width: 40vmin;
+    height: 35vmin;
+    width: 35vmin;
 }
 
 #red:hover, #red .activated{
@@ -122,8 +113,27 @@ button:hover {
 .score > div {
     display: inline-flex;
     font-family: 'Megrim', cursive;
-    font-size: 22px;
+    font-size: 3.5vmin;
     font-weight: bold;
     text-shadow: 0 0 3px yellow, 0 0 5px gray;
-    
+}
+
+#color-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 36vmin);
+    grid-template-rows: repeat(2, 36vmin);
+    place-items: center;
+}
+
+#scores {
+    display: inline-flex;
+    justify-content: stretch;
+    align-items: stretch; 
+}
+
+footer {
+    font-family: 'Nixie One', cursive;
+    font-size: 1.5vmin;
+    margin: 1vmin;
+    padding: 5vmin;
 }
