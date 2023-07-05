@@ -27,11 +27,13 @@ colorEls.forEach(function(colorEl) {
 function init() {
     noMistakes = true;
     currentScore = 0;
+    curScoreEl.innerText = currentScore;
     turnCount = 0;
     computerSequence = [];
     playerSequence = [];
     startBtn.style.visibility = "hidden";
     messageEl.textContent = "a memory game";
+    render();
     computerTurn();
 };
 
@@ -89,84 +91,49 @@ function computerTurn() {
     }); 
     clearTimeout(flashColor);
     turnCount += 1;
-    console.log(`No mistakes: ${noMistakes}`);
     console.log(`Computer sequence: ${computerSequence}`);
 }
 
 function playerTurn(evt) {
     const colorIdx = colorEls.indexOf(evt.target);
     const clickedColor = colors[colorIdx];
-    playerSequence.push(clickedColor);
+    playerSequence.push(clickedColor) - 1;
     makeSound(clickedColor);
     console.log(`Player sequence: ${playerSequence}`);
-    compareSequences(computerSequence, playerSequence);
-    // if (!compareSequences(computerSequence, playerSequence)) {
-    //     noMistakes = false;
-    //     return;
-    // }
-    // setTimeout(function() {
-    //     computerTurn();
-    // }, 600);
-    // playerSequence = [];
-    // return;
+    if (!compareSequences(computerSequence, playerSequence)) {
+        noMistakes = false;
+        return;
+    }
+    playerSequence = [];
+    setTimeout(function() {
+        computerTurn();
+    }, 600);
+    return;
 };
 
 function compareSequences(compSeq, playerSeq) {
+    if (playerSeq.length !== compSeq.length) {
+        return;
+    }
+    // if (compSeq.length === playerSeq.length) {
     let sequenceLength = compSeq.length;
     for (let i = 0; i < sequenceLength; i++) {
         if (compSeq[i] !== playerSeq[i]) {
             noMistakes = false;
-            endGame();
-        } else if (compSeq.length !== playerSeq.length) {
-            playerTurn(); // causes an error, not sure if it affects anything
-        } else {
-            currentScore += 1;
-            curScoreEl.innerText = currentScore;
-            playerSequence = [];
-            setTimeout(function() {
-                computerTurn();
-            }, 600);
-            return;
-        } 
-    };
-    
-    // if (compSeq.length !== playerSeq.length) {
-    //     playerTurn(); // causes an error but doesn't seem to actually affect anything
-    // }
-    // // if (compSeq.length === playerSeq.length) {
-    // let sequenceLength = compSeq.length;
-    // for (let i = 0; i < sequenceLength; i++) {
-    //     if (compSeq[i] !== playerSeq[i]) {
-    //         noMistakes = false;
-    //         render();
-    //         if (prevHighScore < currentScore) {
-    //             highScore = currentScore;
-    //             prevHighScore = highScore;
-    //             highScoreEl.innerText = highScore;
-    //         } else {
-    //             highScoreEl.innerText = prevHighScore;
-    //         }
-    //         return false;
-    //     }
-    // }
-    // currentScore += 1;
-    // curScoreEl.innerText = currentScore;
-    // return true;
-    // // } else {
-    // //     noMistakes = false;
-    // //     return false;
-    // // }
-};
-
-function endGame() {
-    render();
-    if (prevHighScore < currentScore) {
-        highScore = currentScore;
-        prevHighScore = highScore;
-        highScoreEl.innerText = highScore;
-    } else {
-        highScoreEl.innerText = prevHighScore;
+            render();
+            if (prevHighScore < currentScore) {
+                highScore = currentScore;
+                prevHighScore = highScore;
+                highScoreEl.innerText = highScore;
+            } else {
+                highScoreEl.innerText = prevHighScore;
+            }
+            return false;
+        }
     }
+    currentScore += 1;
+    curScoreEl.innerText = currentScore;
+    return true;
 };
 
 /* Pseudocode:
