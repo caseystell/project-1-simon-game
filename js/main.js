@@ -80,8 +80,11 @@ function makeSound(color) {
     }, 600);
 };
 
-function computerTurn() {
+function computerTurn(idx) {
     const nextColor = getRandomColor();
+    if (nextColor === computerSequence[idx]) {
+        nextColor = getRandomColor();
+    }
     computerSequence.push(nextColor);
     computerSequence.forEach(function(color, index) {
         setTimeout(function() {
@@ -97,7 +100,7 @@ function computerTurn() {
 function playerTurn(evt) {
     const colorIdx = colorEls.indexOf(evt.target);
     const clickedColor = colors[colorIdx];
-    playerSequence.push(clickedColor) - 1;
+    playerSequence.push(clickedColor);
     makeSound(clickedColor);
     console.log(`Player sequence: ${playerSequence}`);
     if (!compareSequences(computerSequence.slice(0, playerSequence.length), playerSequence)) {
@@ -105,6 +108,8 @@ function playerTurn(evt) {
         return;
     };
     if (playerSequence.length === computerSequence.length) {
+        currentScore += 1;
+        curScoreEl.innerText = currentScore;
         playerSequence = [];
         setTimeout(function() {
             computerTurn();
@@ -113,10 +118,7 @@ function playerTurn(evt) {
 };
 
 function compareSequences(compSeq, playerSeq) {
-    if (playerSeq.length !== compSeq.length) {
-        return;
-    };
-    let sequenceLength = compSeq.length;
+    let sequenceLength = playerSeq.length;
     for (let i = 0; i < sequenceLength; i++) {
         if (compSeq[i] !== playerSeq[i]) {
             noMistakes = false;
@@ -131,29 +133,5 @@ function compareSequences(compSeq, playerSeq) {
             return false;
         };
     };
-    currentScore += 1;
-    curScoreEl.innerText = currentScore;
     return true;
 };
-
-/* Pseudocode:
-
-X const array for the 4 color variables, which link to the HTML divs of the corresponding colors (cached element)
-X declare state variables: noMistakes = true; currentScore = 0, highScore = 0;
-click event listener to verify if each click matches what color the computer randomly generated
-create a while loop: while noMistakes, execute gamePlay function
-    computer randomly selects a color and displays the color, while making the corresponding sound for that color
-    user is given time to copy that color
-        if user takes longer than 1 minute to select a color, game times out and resets (while loop ends)
-    if user is correct (noMistakes = true), game continues, computer add 1 to its random sequence, ensuring sequence is the same + 1
-    if a mistake is made, noMistakes = false, ends while loop, resets board to initial state & currentScore to 0
-        if currentScore > highScore, currentScore becomes the new highScore
-        highScore is never reset
-X create a play again game button functionality when the player loses
-
-
-
-
-To figure out:
-how to get computer to generate the same random sequence while no mistakes are made (asynchronous timing?)
-*/
