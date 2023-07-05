@@ -5,13 +5,14 @@ const colors = ["red", "blue", "yellow", "green"];
 let noMistakes = true;
 let currentScore = 0;
 let highScore = 0;
+let prevHighScore = 0;
 let turnCount = 0;
 let computerSequence = [];
 let playerSequence = [];
 
 /*----- cached elements  -----*/
-const curScoreEl = document.getElementsByClassName("cur-score");
-const highScoreEl = document.getElementsByClassName("high-score");
+const curScoreEl = document.getElementById("cur-score");
+const highScoreEl = document.getElementById("high-score");
 const startBtn = document.getElementById("start");
 const colorEls = [...document.querySelectorAll("#color-buttons > div")];
 
@@ -31,7 +32,6 @@ function init() {
     startBtn.style.visibility = "hidden";
     render();
     computerTurn();
-    // playGame();
 };
 
 function render() {
@@ -42,8 +42,10 @@ function render() {
 function renderMessage() {
     const messageEl = document.querySelector("h2");
     if (!noMistakes) {
-        messageEl.innerText = `Game over! You got ${currentScore} in a row!`
-    } return;
+        messageEl.innerText = `Game over! You got ${currentScore} in a row!`;
+    } else {
+        return;
+    };
 };
 
 function renderButtons() {
@@ -106,43 +108,34 @@ function playerTurn(evt) {
 };
 
 function compareSequences(compSeq, playerSeq) {
-    if (compSeq.length === playerSeq.length) {
+    // if (compSeq.length === playerSeq.length) {
         let sequenceLength = compSeq.length;
         for (let i = 0; i < sequenceLength; i++) {
             if (compSeq[i] !== playerSeq[i]) {
                 !noMistakes;
-                highScore = currentScore;
-                highScoreEl.innerText = highScore
+                renderMessage();
+                if (prevHighScore < currentScore) {
+                    highScore = currentScore;
+                    prevHighScore = highScore;
+                    highScoreEl.innerText = highScore;
+                } else {
+                    highScoreEl.innerText = prevHighScore;
+                }
                 return false;
             }
         }
         currentScore += 1;
         curScoreEl.innerText = currentScore;
         return true;
-    } else {
-        !noMistakes;
-        return false;
-    }
+    // } else {
+    //     !noMistakes;
+    //     return false;
+    // }
 };
 
 function endGame() {
 
 }
-
-// function playGame() {
-    
-// };
-
-// function playGame() {
-//     computerTurn();
-//     while (noMistakes) {
-//         if (!compareSequences(computerSequence, playerSequence)) {
-//             break;
-//         }
-//         computerTurn();
-//     } return;
-// };
-
 
 /* Pseudocode:
 
