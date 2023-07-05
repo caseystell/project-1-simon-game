@@ -5,13 +5,11 @@
 body {
     height: 100vh;
     margin: 5vmin;
-    /* display: flex;
+    display: inline-flex;
     flex-direction: column;
+    justify-content: start;
     align-items: center;
-    text-align: center; */
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 1fr 2fr 1.5fr 2fr
+    text-align: center;
 }
 
 header {
@@ -48,22 +46,18 @@ h2 {
     background-color: green;
 }
 
-/* .red, .blue, .yellow, .green {
-    display: grid;
-    grid-template-columns: repeat(4, 4vmin);
-} */
-
 #header > div {
     height: 30px;
     width: 30px;
-    display: inline-block;
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
+    display: inline-grid;
+    margin: 1px;
 }
 
 .score, #start {
     font-family: 'Nixie One', cursive;
     font-size: 20px;
+    margin: 5px;
+    padding: 2px;
 }
 
 #red {
@@ -83,12 +77,12 @@ h2 {
 }
 
 #color-buttons > div {
-    display: inline-grid;
-    grid-column: 2 / span 2;
-    grid-row: 2 / span 3;
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
     gap: 2vmin;
-    height: 20vmin;
-    width: 20vmin;
+    height: 40vmin;
+    width: 40vmin;
 }
 
 #red:hover, #red .activated{
@@ -109,10 +103,11 @@ h2 {
 
 button {
     margin-top: 1vmin;
-    padding: 0.9vmin;
-    font-size: 4vmin;
+    padding: 1vmin;
+    font-size: 5vmin;
+    font-weight: bold;
     border-radius: 0.75vmin;
-    border: 0.1vmin solid red;
+    border: 0.2vmin solid red;
     background-color: white;
     color: red;
   }
@@ -121,19 +116,14 @@ button:hover {
     background-color: red;
     border: solid white;
     color: white;
+    font-weight: bold;
 }
 
-#start {
-    grid-column: 1 / span 1;
-    grid-row: 2 / span 1;
-}
-
-.cur-score {
-    grid-column: 3 / span 1;
-    grid-row: 2 / span 1;
-}
-
-.high-score {
-    grid-column: 3 / span 1;
-    grid-row: 4 / span 1;
+.score > div {
+    display: inline-flex;
+    font-family: 'Megrim', cursive;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 3px yellow, 0 0 5px gray;
+    
 }
