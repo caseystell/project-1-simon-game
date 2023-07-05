@@ -74,21 +74,22 @@ h2 {
 #color-buttons > div {
     height: 35vmin;
     width: 35vmin;
+    cursor: pointer;
 }
 
-#red:hover, #red .activated{
+#red .activated{
     background-color: red;
 }
 
-#blue:hover, #blue .activated{
+#blue .activated{
     background-color: blue;
 }
 
-#yellow:hover, #yellow .activated{
+#yellow .activated{
     background-color: yellow;
 }
 
-#green:hover, #green .activated{
+#green .activated{
     background-color: green;
 }
 
@@ -108,6 +109,7 @@ button:hover {
     border: solid white;
     color: white;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .score > div {
@@ -136,4 +138,11 @@ footer {
     font-size: 1.5vmin;
     margin: 1vmin;
     padding: 5vmin;
+}
+
+#color-buttons > div:hover {
+    height: 35vmin;
+    width: 35vmin;
+    cursor: pointer;
+    background-color: lightgrey;
 }

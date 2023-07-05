@@ -101,6 +101,7 @@ function playerTurn(evt) {
     const colorIdx = colorEls.indexOf(evt.target);
     const clickedColor = colors[colorIdx];
     playerSequence.push(clickedColor);
+    flashColor(clickedColor);
     makeSound(clickedColor);
     console.log(`Player sequence: ${playerSequence}`);
     if (!compareSequences(computerSequence.slice(0, playerSequence.length), playerSequence)) {
