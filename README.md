@@ -3,9 +3,12 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/caseystell/project-1-simon-game"></a>
 
-<h3 align="center">Simon: A Memory Game</h3>
+<img src="./screenshots/Simon_Header.png" alt="Simon Game Logo" height="100" width="150"/>
+
+<h2 align="center">Simon: A Memory Game
+    <a href="https://github.com/caseystell/project-1-simon-game"></a>
+</h2>
 
   <p align="center">
     This memory game tests a player's ability to remember an ever-growing sequence of colors while using a clean, minimal interface. Enjoy testing the limits of your memory with this easy and fun game for ages 4+!
@@ -19,7 +22,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#game-images">Game Images</a><li>
+        <li><a href="#game-images">Game Images</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -36,9 +39,8 @@
 
 ## Game Images
 
-<img src="./screenshots/Simon_Game_1.png" alt="Simon Game Start"/>
-<img src="./screenshots/Simon_Game_2.png" alt="Simon Game in Play"/>
-<img src="./screenshots/Simon_Game_3.png" alt="Simon Game End"/>
+<img src="./screenshots/Simon_Game_1.png" alt="Simon Game Start" height="200" width="200"/>
+<img src="./screenshots/Simon_Game_3.png" alt="Simon Game End" height="200" width="200"/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -66,7 +68,7 @@
 
 ## Next Steps
 
-<h5>In future versions, we hope to roll out the following features:</h5>
+<h4>In future versions, we hope to roll out the following features:</h4>
 <ul>
     <li>Customizable sounds and colors/patterns for each tile!</li>
     <li>Easy, Medium, and Hard levels with an increasing number of tiles beyond 4 to enhance your skills</li>
