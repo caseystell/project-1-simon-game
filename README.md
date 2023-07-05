@@ -4,7 +4,7 @@
 <br />
 <div align="center">
 
-<img src="./screenshots/Simon_Header.png" alt="Simon Game Logo" height="100" width="150"/>
+<img src="./screenshots/Simon_Header.png" alt="Simon Game Logo" height="200" width="300"/>
 
 <h2 align="center">Simon: A Memory Game
     <a href="https://github.com/caseystell/project-1-simon-game"></a>
@@ -39,8 +39,8 @@
 
 ## Game Images
 
-<img src="./screenshots/Simon_Game_1.png" alt="Simon Game Start" height="200" width="200"/>
-<img src="./screenshots/Simon_Game_3.png" alt="Simon Game End" height="200" width="200"/>
+<img src="./screenshots/Simon_Game_1.png" alt="Simon Game Start" height="350" width="350" display="inline" align="center"/>
+<img src="./screenshots/Simon_Game_3.png" alt="Simon Game End" height="350" width="350" display="inline" align="center"/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
