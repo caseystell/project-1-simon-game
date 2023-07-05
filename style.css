@@ -61,7 +61,7 @@ h2 {
     grid-row: 1 / span 1;
 }
 
-.score, #replay, #start {
+.score, #start {
     font-family: 'Nixie One', cursive;
     font-size: 20px;
 }
@@ -121,11 +121,6 @@ button:hover {
     background-color: red;
     border: solid white;
     color: white;
-}
-
-#replay {
-    grid-column: 1 / span 1;
-    grid-row: 4 / span 1;
 }
 
 #start {

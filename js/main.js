@@ -15,6 +15,7 @@ const curScoreEl = document.getElementById("cur-score");
 const highScoreEl = document.getElementById("high-score");
 const startBtn = document.getElementById("start");
 const colorEls = [...document.querySelectorAll("#color-buttons > div")];
+const messageEl = document.querySelector("h2");
 
 /*----- event listeners -----*/
 startBtn.addEventListener("click", init);
@@ -30,27 +31,24 @@ function init() {
     computerSequence = [];
     playerSequence = [];
     startBtn.style.visibility = "hidden";
-    render();
+    messageEl.textContent = "a memory game";
     computerTurn();
 };
 
 function render() {
-    // renderMessage();
-    renderButtons();
+    renderMessage();
+    renderButton();
 };
 
 function renderMessage() {
-    const messageEl = document.querySelector("h2");
-    if (noMistakes = false) {
+    if (noMistakes === false) {
         messageEl.innerHTML = `Game over! You got ${currentScore} in a row!`;
     } else {
         return;
     };
 };
 
-function renderButtons() {
-    const playAgainBtn = document.getElementById("replay");
-    playAgainBtn.style.visibility = noMistakes ? "hidden" : "visible";
+function renderButton() {
     startBtn.style.visibility = noMistakes ? "hidden" : "visible";
 };
 
@@ -59,37 +57,39 @@ function getRandomColor() {
     return randomColor;
 };
 
-function flashColor(color, timeoutTime) {
+function flashColor(color) {
     const colorEl = document.querySelector(`[id='${color}']`);
     const originalColor = colorEl.style.backgroundColor;
-    console.log(`The original color is ${originalColor}`);
     colorEl.style.backgroundColor = color;
     setTimeout(function() {
-        colorEl.style.backgroundColor = originalColor;
-    }, (timeoutTime / 4));
+        if (colorEl.style.backgroundColor !== originalColor) {
+            colorEl.style.backgroundColor = originalColor;
+        }
+    }, 600);
 };
 
-function makeSound(color, timeoutTime) {
+function makeSound(color) {
     const colorEl = document.querySelector(`[id='${color}']`);
     const colorSounds = document.querySelector(`[sound='${color}']`);
     colorEl.classList.add("activated");
     colorSounds.play();
     setTimeout(function() {
         colorEl.classList.remove("activated");
-    }, (timeoutTime / 4));
+    }, 600);
 };
 
 function computerTurn() {
     const nextColor = getRandomColor();
     computerSequence.push(nextColor);
     computerSequence.forEach(function(color, index) {
-        let timeoutTime = (index + 1) * 800;
         setTimeout(function() {
-            flashColor(color, timeoutTime);
-            makeSound(color, timeoutTime);
-        }, timeoutTime);
+            flashColor(color);
+            makeSound(color);
+        }, (index + 1) * 600);
     }); 
+    clearTimeout(flashColor);
     turnCount += 1;
+    console.log(`No mistakes: ${noMistakes}`);
     console.log(`Computer sequence: ${computerSequence}`);
 }
 
@@ -99,45 +99,75 @@ function playerTurn(evt) {
     playerSequence.push(clickedColor);
     makeSound(clickedColor);
     console.log(`Player sequence: ${playerSequence}`);
-    if (!compareSequences(computerSequence, playerSequence)) {
-        return;
-    }
-    setTimeout(function() {
-        computerTurn();
-    }, 600);
-    playerSequence = [];
-    return;
+    compareSequences(computerSequence, playerSequence);
+    // if (!compareSequences(computerSequence, playerSequence)) {
+    //     noMistakes = false;
+    //     return;
+    // }
+    // setTimeout(function() {
+    //     computerTurn();
+    // }, 600);
+    // playerSequence = [];
+    // return;
 };
 
 function compareSequences(compSeq, playerSeq) {
-    // if (compSeq.length === playerSeq.length) {
-        let sequenceLength = compSeq.length;
-        for (let i = 0; i < sequenceLength; i++) {
-            if (compSeq[i] !== playerSeq[i]) {
-                noMistakes = false;
-                renderMessage();
-                if (prevHighScore < currentScore) {
-                    highScore = currentScore;
-                    prevHighScore = highScore;
-                    highScoreEl.innerText = highScore;
-                } else {
-                    highScoreEl.innerText = prevHighScore;
-                }
-                return false;
-            }
-        }
-        currentScore += 1;
-        curScoreEl.innerText = currentScore;
-        return true;
-    // } else {
-    //     noMistakes = false;
-    //     return false;
+    let sequenceLength = compSeq.length;
+    for (let i = 0; i < sequenceLength; i++) {
+        if (compSeq[i] !== playerSeq[i]) {
+            noMistakes = false;
+            endGame();
+        } else if (compSeq.length !== playerSeq.length) {
+            playerTurn(); // causes an error, not sure if it affects anything
+        } else {
+            currentScore += 1;
+            curScoreEl.innerText = currentScore;
+            playerSequence = [];
+            setTimeout(function() {
+                computerTurn();
+            }, 600);
+            return;
+        } 
+    };
+    
+    // if (compSeq.length !== playerSeq.length) {
+    //     playerTurn(); // causes an error but doesn't seem to actually affect anything
     // }
+    // // if (compSeq.length === playerSeq.length) {
+    // let sequenceLength = compSeq.length;
+    // for (let i = 0; i < sequenceLength; i++) {
+    //     if (compSeq[i] !== playerSeq[i]) {
+    //         noMistakes = false;
+    //         render();
+    //         if (prevHighScore < currentScore) {
+    //             highScore = currentScore;
+    //             prevHighScore = highScore;
+    //             highScoreEl.innerText = highScore;
+    //         } else {
+    //             highScoreEl.innerText = prevHighScore;
+    //         }
+    //         return false;
+    //     }
+    // }
+    // currentScore += 1;
+    // curScoreEl.innerText = currentScore;
+    // return true;
+    // // } else {
+    // //     noMistakes = false;
+    // //     return false;
+    // // }
 };
 
 function endGame() {
-
-}
+    render();
+    if (prevHighScore < currentScore) {
+        highScore = currentScore;
+        prevHighScore = highScore;
+        highScoreEl.innerText = highScore;
+    } else {
+        highScoreEl.innerText = prevHighScore;
+    }
+};
 
 /* Pseudocode:
 
