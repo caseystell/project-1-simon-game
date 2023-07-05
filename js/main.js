@@ -35,14 +35,14 @@ function init() {
 };
 
 function render() {
-    renderMessage();
+    // renderMessage();
     renderButtons();
 };
 
 function renderMessage() {
     const messageEl = document.querySelector("h2");
-    if (!noMistakes) {
-        messageEl.innerText = `Game over! You got ${currentScore} in a row!`;
+    if (noMistakes = false) {
+        messageEl.innerHTML = `Game over! You got ${currentScore} in a row!`;
     } else {
         return;
     };
@@ -59,34 +59,36 @@ function getRandomColor() {
     return randomColor;
 };
 
-function flashColor(color) {
+function flashColor(color, timeoutTime) {
     const colorEl = document.querySelector(`[id='${color}']`);
     const originalColor = colorEl.style.backgroundColor;
+    console.log(`The original color is ${originalColor}`);
     colorEl.style.backgroundColor = color;
     setTimeout(function() {
         colorEl.style.backgroundColor = originalColor;
-    }, 600);
+    }, (timeoutTime / 4));
 };
 
-function makeSound(color) {
+function makeSound(color, timeoutTime) {
     const colorEl = document.querySelector(`[id='${color}']`);
     const colorSounds = document.querySelector(`[sound='${color}']`);
     colorEl.classList.add("activated");
     colorSounds.play();
     setTimeout(function() {
         colorEl.classList.remove("activated");
-    }, 600);
+    }, (timeoutTime / 4));
 };
 
 function computerTurn() {
     const nextColor = getRandomColor();
     computerSequence.push(nextColor);
     computerSequence.forEach(function(color, index) {
+        let timeoutTime = (index + 1) * 800;
         setTimeout(function() {
-            flashColor(color);
-            makeSound(color);
-        }, (index + 1) * 600);
-    });
+            flashColor(color, timeoutTime);
+            makeSound(color, timeoutTime);
+        }, timeoutTime);
+    }); 
     turnCount += 1;
     console.log(`Computer sequence: ${computerSequence}`);
 }
@@ -112,7 +114,7 @@ function compareSequences(compSeq, playerSeq) {
         let sequenceLength = compSeq.length;
         for (let i = 0; i < sequenceLength; i++) {
             if (compSeq[i] !== playerSeq[i]) {
-                !noMistakes;
+                noMistakes = false;
                 renderMessage();
                 if (prevHighScore < currentScore) {
                     highScore = currentScore;
@@ -128,7 +130,7 @@ function compareSequences(compSeq, playerSeq) {
         curScoreEl.innerText = currentScore;
         return true;
     // } else {
-    //     !noMistakes;
+    //     noMistakes = false;
     //     return false;
     // }
 };
