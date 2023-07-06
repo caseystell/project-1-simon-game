@@ -6,8 +6,8 @@
 
 <img src="./screenshots/Simon_Header_1.png" alt="Simon Game Logo" height="200" width="350"/>
 
-<h2 align="center">Simon: A Memory Game
-    <a href="https://github.com/caseystell/project-1-simon-game"></a>
+<h2 align="center">
+    <a href="https://caseystell.github.io/project-1-simon-game/">Simon: A Memory Game</a>
 </h2>
 
   <p align="center">
@@ -39,8 +39,8 @@
 
 ## Game Images
 
-<img src="./screenshots/Simon_1.png" alt="Simon Game Start" height="550" width="400" display="inline-block" border="1px solid black"/>
-<img src="./screenshots/Simon_2.png" alt="Simon Game End" height="550" width="400" display="inline-block" border="1px solid black"/>
+<img src="./screenshots/Simon_1.png" alt="Simon Game Start" height="550" width="450" display="inline-block" border="1px solid black"/>
+<img src="./screenshots/Simon_2.png" alt="Simon Game End" height="550" width="450" display="inline-block" border="1px solid black"/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -55,7 +55,6 @@
 
 ## Getting Started
 
-<a href="https://caseystell.github.io/project-1-simon-game/"></a>
 <h4>How to Play:</h4>
 <ol>
     <li>Click "Start"!</li>
