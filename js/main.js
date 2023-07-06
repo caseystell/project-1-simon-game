@@ -22,7 +22,7 @@ colorEls.forEach(function(colorEl) {
 function init() {
     noMistakes = true;
     currentScore = 0;
-    curScoreEl.innerText = currentScore;
+    curScoreEl.textContent = currentScore;
     turnCount = 0;
     computerSequence = [];
     playerSequence = [];
@@ -40,8 +40,6 @@ function render() {
 function renderMessage() {
     if (noMistakes === false) {
         messageEl.innerHTML = `Game over! You got ${currentScore} in a row!`;
-    } else {
-        return;
     };
 };
 
@@ -55,24 +53,24 @@ function getRandomColor() {
 };
 
 function flashColor(color) {
-    const colorEl = document.querySelector(`[id='${color}']`);
+    const colorEl = document.getElementById(`${color}`);
     const originalColor = colorEl.style.backgroundColor;
     colorEl.style.backgroundColor = color;
     setTimeout(function() {
         if (colorEl.style.backgroundColor !== originalColor) {
             colorEl.style.backgroundColor = originalColor;
         }
-    }, 400);
+    }, 300);
 };
 
 function makeSound(color) {
-    const colorEl = document.querySelector(`[id='${color}']`);
+    const colorEl = document.getElementById(`${color}`);
     const colorSounds = document.querySelector(`[sound='${color}']`);
     colorEl.classList.add("activated");
     colorSounds.play();
     setTimeout(function() {
         colorEl.classList.remove("activated");
-    }, 400);
+    }, 100);
 };
 
 function computerTurn(idx) {
@@ -82,9 +80,8 @@ function computerTurn(idx) {
         setTimeout(function() {
             flashColor(color);
             makeSound(color);
-        }, (index + 1) * 800);
+        }, (index + 1) * 600);
     }); 
-    clearTimeout(flashColor);
     turnCount += 1;
 };
 
@@ -100,7 +97,7 @@ function playerTurn(evt) {
     };
     if (playerSequence.length === computerSequence.length) {
         currentScore += 1;
-        curScoreEl.innerText = currentScore;
+        curScoreEl.textContent = currentScore;
         playerSequence = [];
         setTimeout(function() {
             computerTurn();
@@ -117,9 +114,9 @@ function compareSequences(compSeq, playerSeq) {
             if (prevHighScore < currentScore) {
                 highScore = currentScore;
                 prevHighScore = highScore;
-                highScoreEl.innerText = highScore;
+                highScoreEl.textContent = highScore;
             } else {
-                highScoreEl.innerText = prevHighScore;
+                highScoreEl.textContent = prevHighScore;
             };
             return false;
         };
