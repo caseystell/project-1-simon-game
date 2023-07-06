@@ -27,18 +27,22 @@ h2 {
 
 .red {
     background-color: red;
+    border-radius: 20%;
 }
 
 .blue {
     background-color: blue;
+    border-radius: 20%;
 }
 
 .yellow {
     background-color: yellow;
+    border-radius: 20%;
 }
 
 .green {
     background-color: green;
+    border-radius: 20%;
 }
 
 #header > div {
@@ -57,18 +61,22 @@ h2 {
 
 #red {
     background-color: #fabbbb;
+    border-radius: 100% 5% 50% 5%;
 }
 
 #blue {
     background-color: #bbe1fc;
+    border-radius: 5% 100% 5% 50%;
 }
 
 #yellow {
     background-color: #f5f5a6;
+    border-radius: 5% 50% 5% 100%;
 }
 
 #green {
     background-color: #b7f7b7;
+    border-radius: 50% 5% 100% 5%;
 }
 
 #color-buttons > div {

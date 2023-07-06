@@ -1,7 +1,5 @@
-/*----- constants -----*/
 const colors = ["red", "blue", "yellow", "green"];
 
-/*----- state variables -----*/
 let noMistakes = true;
 let currentScore = 0;
 let highScore = 0;
@@ -10,20 +8,17 @@ let turnCount = 0;
 let computerSequence = [];
 let playerSequence = [];
 
-/*----- cached elements  -----*/
 const curScoreEl = document.getElementById("cur-score");
 const highScoreEl = document.getElementById("high-score");
 const startBtn = document.getElementById("start");
 const colorEls = [...document.querySelectorAll("#color-buttons > div")];
 const messageEl = document.querySelector("h2");
 
-/*----- event listeners -----*/
 startBtn.addEventListener("click", init);
 colorEls.forEach(function(colorEl) {
     colorEl.addEventListener("click", playerTurn);
 });
 
-/*----- functions -----*/
 function init() {
     noMistakes = true;
     currentScore = 0;
