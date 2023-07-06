@@ -39,8 +39,8 @@
 
 ## Game Images
 
-<img src="./screenshots/Simon_1.png" alt="Simon Game Start" height="450" width="450" display="inline-block" border="1px solid black"/>
-<img src="./screenshots/Simon_2.png" alt="Simon Game End" height="450" width="450" display="inline-block" border="1px solid black"/>
+<img src="./screenshots/Simon_1.png" alt="Simon Game Start" height="550" width="400" display="inline-block" border="1px solid black"/>
+<img src="./screenshots/Simon_2.png" alt="Simon Game End" height="550" width="400" display="inline-block" border="1px solid black"/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
