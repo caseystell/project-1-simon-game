@@ -56,6 +56,7 @@
 ## Getting Started
 
 <h4>How to Play:</h4>
+<h5>Click <a href="https://caseystell.github.io/project-1-simon-game/">here</a> to launch the game!</h5>
 <ol>
     <li>Click "Start"!</li>
     <li>A color will flash. Repeat the sequence by clicking on the same color tile.</li>
