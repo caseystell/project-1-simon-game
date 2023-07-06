@@ -62,7 +62,7 @@ function flashColor(color) {
         if (colorEl.style.backgroundColor !== originalColor) {
             colorEl.style.backgroundColor = originalColor;
         }
-    }, 600);
+    }, 400);
 };
 
 function makeSound(color) {
@@ -72,24 +72,20 @@ function makeSound(color) {
     colorSounds.play();
     setTimeout(function() {
         colorEl.classList.remove("activated");
-    }, 600);
+    }, 400);
 };
 
 function computerTurn(idx) {
     const nextColor = getRandomColor();
-    if (nextColor === computerSequence[idx]) {
-        nextColor = getRandomColor();
-    }
     computerSequence.push(nextColor);
     computerSequence.forEach(function(color, index) {
         setTimeout(function() {
             flashColor(color);
             makeSound(color);
-        }, (index + 1) * 600);
+        }, (index + 1) * 800);
     }); 
     clearTimeout(flashColor);
     turnCount += 1;
-    console.log(`Computer sequence: ${computerSequence}`);
 };
 
 function playerTurn(evt) {
@@ -98,7 +94,6 @@ function playerTurn(evt) {
     playerSequence.push(clickedColor);
     flashColor(clickedColor);
     makeSound(clickedColor);
-    console.log(`Player sequence: ${playerSequence}`);
     if (!compareSequences(computerSequence.slice(0, playerSequence.length), playerSequence)) {
         noMistakes = false;
         return;
@@ -109,7 +104,7 @@ function playerTurn(evt) {
         playerSequence = [];
         setTimeout(function() {
             computerTurn();
-        }, 600);
+        }, 800);
     };
 };
 

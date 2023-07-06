@@ -7,7 +7,7 @@
 <img src="./screenshots/Simon_Header_1.png" alt="Simon Game Logo" height="200" width="350"/>
 
 <h2 align="center">
-    <a href="https://caseystell.github.io/project-1-simon-game/" target="_blank">Simon: A Memory Game</a>
+    <a href="https://caseystell.github.io/project-1-simon-game/" target="_blank" rel="noopener noreferrer" >Simon: A Memory Game</a>
 </h2>
 
   <p align="center">
@@ -56,7 +56,7 @@
 ## Getting Started
 
 <h4>How to Play:</h4>
-<h5>Click <a href="https://caseystell.github.io/project-1-simon-game/" target="_blank">here</a> to launch the game!</h5>
+<h5>Click <a href="https://caseystell.github.io/project-1-simon-game/" target="_blank" rel="noopener noreferrer" >here</a> to launch the game!</h5>
 <ol>
     <li>Click "Start"!</li>
     <li>A color will flash. Repeat the sequence by clicking on the same color tile.</li>
